@@ -1,0 +1,15 @@
+# roles/tftp/vars/Debian.yml
+# Variables specific to the Debian distribution
+---
+
+tftp_packages:
+  # - libsemanage-python #Lib para manejo de SE desde Python. No iría.
+  - tftp-hpa  #ex: tftp-server
+  # - xinetd #dudo que esto quede. No esta instalado por defecto.
+
+tftp_service: tftp-hpa #ex xinetd
+
+# tftp_config: /etc/xinetd.d/tftp #RHEL
+tftp_config: /etc/default/tftp-hpa #UbuntuServer y ¿debian?
+
+# tftp_foreman_map_file: /etc/tftpd.map #no foreman.

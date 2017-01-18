@@ -21,22 +21,22 @@
     owner: "{{ tftp_user }}"
     group: "{{ tftp_group }}"
     mode: "{{ tftp_mode }}"
-    setype: "{{ tftp_setype }}"
+    # setype: "{{ tftp_setype }}"
   tags: tftp
 
-- name: Ensure SELinux boolean ‘tftp_anon_write’ has the desired value
-  seboolean:
-    name: tftp_anon_write
-    state: "{{ tftp_anon_write }}"
-    persistent: yes
-  tags: tftp
+# - name: Ensure SELinux boolean ‘tftp_anon_write’ has the desired value
+#   seboolean:
+#     name: tftp_anon_write
+#     state: "{{ tftp_anon_write }}"
+#     persistent: yes
+#   tags: tftp
 
-- name: Ensure SELinux boolean ‘tftp_home_dir’ has the desired value
-  seboolean:
-    name: tftp_home_dir
-    state: "{{ tftp_home_dir }}"
-    persistent: yes
-  tags: tftp
+# - name: Ensure SELinux boolean ‘tftp_home_dir’ has the desired value
+#   seboolean:
+#     name: tftp_home_dir
+#     state: "{{ tftp_home_dir }}"
+#     persistent: yes
+#   tags: tftp
 
 - name: Ensure service is started
   service:
@@ -48,18 +48,18 @@
 - name: Install configuration file
   template:
     dest: "{{ tftp_config }}"
-    src: etc_xinetd.d_tftp.j2
+    src: etc_tftpd-hpa.conf.j2 #etc_xinetd.d_tftp.j2
   notify:
     - restart tftp
   tags: tftp
 
-- name: Install foreman map file
-  template:
-    dest: "{{ tftp_foreman_map_file }}"
-    src: etc_tftpd.map.j2
-  notify:
-    - restart tftp
-  when: tftp_server_foreman_support
-  tags:
-    - tftp
-    - foreman
+# - name: Install foreman map file
+#   template:
+#     dest: "{{ tftp_foreman_map_file }}"
+#     src: etc_tftpd.map.j2
+#   notify:
+#     - restart tftp
+#   when: tftp_server_foreman_support
+#   tags:
+#     - tftp
+#     - foreman

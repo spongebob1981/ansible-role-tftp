@@ -2,11 +2,18 @@
 ---
 
 # Root directory of shared files
-tftp_root_directory: /var/lib/tftpboot
+tftp_root_directory: /srv/tftpboot #ex: /var/lib/tftpboot
+
 
 # See tftp(8) man page for details on how to set the server arguments
 # http://linux.die.net/man/8/tftpd
 tftp_server_args: "--secure"
+#Servidor de fran tiene: -s -c -l -v. 
+# -s es --secure.
+# El otro que podria aplicar es -l(isten)
+# -v(erbose) no
+# -c (permitir creacion) tampoco.
+
 
 # Changing this to 'yes' will disable TFTP, so you probably want to leave
 # this alone...
@@ -15,8 +22,9 @@ tftp_disable: "no"
 # Default SELinux context. Set this to ‘public_content_t’ or
 # ‘public_content_rw_t’ to serve these files through other services (web,
 # ftp, ...). See man tftpd_selinux(8) for details
-tftp_setype: tftpdir_rw_t
+# tftp_setype: tftpdir_rw_t
 
+#Estos valores suenan bien.
 tftp_anon_write: no
 tftp_home_dir: no
 
@@ -26,10 +34,10 @@ tftp_wait: "yes"
 tftp_user: "root"
 tftp_group: "root"
 tftp_mode: "0755"
-tftp_server: "/usr/sbin/in.tftpd"
-tftp_per_source: "11"
-tftp_cps: "100 2"
-tftp_flags: "IPv4"
+tftp_server: "binario del servidor tftp"  #"/usr/sbin/in.tftpd"
+tftp_per_source: "11" #??
+tftp_cps: "100 2" #??
+tftp_flags: "IPv4" 
 
-# Enable Foreman support by creating suitable tftpd.map
-tftp_server_foreman_support: false
+# # Enable Foreman support by creating suitable tftpd.map
+# tftp_server_foreman_support: false
